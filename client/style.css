@@ -1,0 +1,147 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.bookmysho_logo{
+    width:115px ;
+    height: 33.9;
+}
+.navbar-light .navbar-toggler {
+    color: rgba(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+.dropdown, .dropend, .dropstart, .dropup {
+    position: static;
+    margin: auto;
+  
+}
+.dropdown-menu[data-bs-popper] {
+    width: 150vh;
+    margin: 0px 400px 0px 250px ;
+    top: 100%;
+    left: 0;
+    margin-top: .125rem;
+    transform: 1s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.carousel-container {
+    width: 100%; /* Full width of the page */
+    overflow: hidden;
+    display: flex;
+    justify-content: center; /* Center the carousel horizontally */
+    position: relative;
+  }
+  
+  .carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: max-content; /* Make sure carousel adapts to its content */
+  }
+  
+  .carousel-cell {
+    flex: 0 0 auto;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .carousel-cell img {
+    display: block;
+    max-height: 200px; /* Set a max height */
+    max-width: 100%;
+    margin: auto;
+    transform: translateY(-50%);
+    position: relative;
+    top: 50%;
+  }
+  
+  button.prev,
+  button.next {
+    position: absolute;
+    top: 26%;
+    transform: translateY(-50%);
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  button.prev {
+    left: 10px;
+  }
+  
+  button.next {
+    right: 10px;
+  }
+  
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+  .owl-nav button {
+    position: absolute;
+    top: 50%;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    transition: all 0.3s ease-in-out;
+  }
+  .owl-nav button.owl-prev {
+    left: 0;
+  }
+  .owl-nav button.owl-next {
+    right: 0;
+  }
+  
+  .owl-dots {
+    text-align: center;
+    padding-top: 15px;
+  }
+  .owl-dots button.owl-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    background: #ccc;
+    margin: 0 3px;
+  }
+  .owl-dots button.owl-dot.active {
+    background-color: #000;
+  }
+  .owl-dots button.owl-dot:focus {
+    outline: none;
+  }
+  .owl-nav button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.38) !important;
+  }
+  /* span {
+      font-size: 70px;    
+      position: relative;
+      top: -5px;
+  } */
+  .owl-nav button:focus {
+      outline: none;
+  }
+  .owl-item {
+    height: 300px !important; /* Adjust this value as needed */
+    display: flex;
+  }
+  .item {
+      width: 100%;
+  }

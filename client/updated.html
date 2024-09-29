@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="loadUpdate()">
+    <div class="position-absolute top-50 start-50 translate-middle">
+
+        <form id="updateForm" enctype="multipart/form-data">
+            <div><input type="text"  id="image" name="image"><input type="file"></div>
+            <div><input type="text" id="title" name="title"></div>
+            <div><input type="number" id="rating" name="rating"></div>
+            <div><input type="number" id="vote" name="vote"></div>
+            <div><input type="text" id="category" name="category"></div>
+            <div><input type="text" id="language" name="language"></div>
+            <button type="submit">Update</button>
+        </form>
+    
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
