@@ -50,6 +50,7 @@ async function addmovie(event) {
                 } else {
                     alert("Something went wrong!");
                 }
+                window.location='admin.html'
                 console.log('response', response);
             } catch (error) {
                 console.error('Error adding movie:', error);
@@ -85,10 +86,10 @@ async function loadData(event) {
 
         for(let i =0; i<data.length; i++){
             row+=`
-                <div class=""> 
+                <div class="px-5"> 
                         <div class="">
                         <div>
-                            <img src="${data[i].image}" onclick="singleData('${data[i]._id}')">
+                            <img src="${data[i].image}" style="width: 200px; height: 400px;" onclick="singleData('${data[i]._id}')">
                             <div class=""> 
                                 <span class="fa fa-star">${data[i].rating}</span>
                                 <span class="fa fa-star">${data[i].vote}</span>
@@ -286,7 +287,7 @@ async function Single(){
     console.log("Clicked to delete product with ID:", id);
 
     try {
-        const response = await fetch(`/delete/${id}`, {
+        const response = await fetch(`/deleteData/${id}`, {
             method: 'DELETE',
         });
 

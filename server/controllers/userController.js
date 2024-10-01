@@ -71,15 +71,40 @@
 
         try {
             
+            let category_collection = await category.findOne({ category: req.query.category });
+            console.log("category_collection:", category_collection);
+
+            let categoryQuery = category_collection;
+            console.log("categoryQuery :",categoryQuery);
+
+            let language_collection =await language.findOne({language : req.query.language});
+            console.log("language_collection : ",language_collection);
+
+
+            let languageQuery = language_collection;
+            console.log("languageQuery :",languageQuery);
+
+
             
-            let getData = await users.find().populate('category').populate('language');
-            console.log("getData",getData);
+            let fillterarr = [];
+
+            if(languageQuery){
+                fillterarr.push({ language : languageQuery})
+            }
+
+            if(categoryQuery){
+                fillterarr.push({ category : categoryQuery})
+            }
+
+            
+            let loadData = await users.find(fillterarr.length > 0 ?{$and :fillterarr} : {}).populate('category').populate('language');
+            console.log("loadData :",loadData);
 
             let response = success_function({
                 success  : true,
                 statuscode : 200,
                 message :"successfully added",
-                data : getData
+                data : loadData
             });
             res.status(response.statuscode).send(response)
             return;
@@ -105,7 +130,7 @@
             let body = req.params.id;
             console.log("body",body);
 
-            let singleData = await users.findOne({_id:body});
+            let singleData = await users.findOne({_id:body}).populate('category').populate('language');
             console.log("singleData : ", singleData);
 
             let response = success_function({
@@ -224,103 +249,103 @@
         }
     }
 
-    exports.filterdata = async function (req,res){
-        let query = req.query
+//     exports.filterdata = async function (req,res){
+//         let query = req.query
 
-       try {
-        if(query.category && query.language){
+//        try {
+//         if(query.category && query.language){
 
-            let  category_filter = await category.findOne ({category : query.category})
-            console.log("category_filter",category_filter);
+//             let  category_filter = await category.findOne ({category : query.category})
+//             console.log("category_filter",category_filter);
 
-            let language_filter = await language.findOne ({language : query.language})
-            console.log("language_filter",language_filter);
-
-
-            let cat_id = category_filter._id;
-            console.log("cat_id : ",cat_id);
-            let lan_id = language_filter._id;
-            console.log("lan_id : ",lan_id);
+//             let language_filter = await language.findOne ({language : query.language})
+//             console.log("language_filter",language_filter);
 
 
+//             let cat_id = category_filter._id;
+//             console.log("cat_id : ",cat_id);
+//             let lan_id = language_filter._id;
+//             console.log("lan_id : ",lan_id);
 
-            // let match_id = await users.find({category : cat_id, language : lan_id}).populate('category').populate('language')
-            // console.log("match_id : ",match_id);
 
-            let match_id = await users.find({category: cat_id, language: lan_id});
-            console.log("Raw match_id:", match_id);
+
+//             // let match_id = await users.find({category : cat_id, language : lan_id}).populate('category').populate('language')
+//             // console.log("match_id : ",match_id);
+
+//             let match_id = await users.find({category: cat_id, language: lan_id});
+//             console.log("Raw match_id:", match_id);
            
 
 
 
-            let response = success_function({
-                success: true,
-                statuscode: 200,
-                message: "successfully filtered by both language and category",
-                data: match_id
-            });
+//             let response = success_function({
+//                 success: true,
+//                 statuscode: 200,
+//                 message: "successfully filtered by both language and category",
+//                 data: match_id
+//             });
     
-            res.status(response.statuscode).send(response);
-            return;
+//             res.status(response.statuscode).send(response);
+//             return;
 
-        }else if(query.category){
+//         }else if(query.category){
 
-            let  category_filter = await category.findOne ({category : query.category})
-            console.log("category_filter",category_filter);
+//             let  category_filter = await category.findOne ({category : query.category})
+//             console.log("category_filter",category_filter);
 
-            let id =  category_filter._id;
-            console.log("id",id);
+//             let id =  category_filter._id;
+//             console.log("id",id);
 
-            let category_match = await users.find({ category: id }).populate('category');
-            console.log('category_match', category_match);
+//             let category_match = await users.find({ category: id }).populate('category');
+//             console.log('category_match', category_match);
 
             
-            let response = success_function({
-                success: true,
-                statuscode: 200,
-                message: "successfully filtered  category",
-                data: category_match
-            });
+//             let response = success_function({
+//                 success: true,
+//                 statuscode: 200,
+//                 message: "successfully filtered  category",
+//                 data: category_match
+//             });
     
-            res.status(response.statuscode).send(response);
-            return;
+//             res.status(response.statuscode).send(response);
+//             return;
     
-        }else if(query.language){
+//         }else if(query.language){
 
-            let  language_filter = await language.findOne({language : query.language})
-            console.log("language_filter",language_filter);
+//             let  language_filter = await language.findOne({language : query.language})
+//             console.log("language_filter",language_filter);
 
-            let id =  language_filter._id;
-            console.log("id",id);
+//             let id =  language_filter._id;
+//             console.log("id",id);
 
-            let language_match = await users.find({ language: id }).populate('language');
-            console.log('language_match', language_match);
+//             let language_match = await users.find({ language: id }).populate('language');
+//             console.log('language_match', language_match);
 
             
-            let response = success_function({
-                success: true,
-                statuscode: 200,
-                message: "successfully filtered  language",
-                data: language_match
-            });
+//             let response = success_function({
+//                 success: true,
+//                 statuscode: 200,
+//                 message: "successfully filtered  language",
+//                 data: language_match
+//             });
     
-            res.status(response.statuscode).send(response);
-            return;
+//             res.status(response.statuscode).send(response);
+//             return;
     
-        }
+//         }
 
-       } catch (error) {
-        console.log("error while filtering", error);
+//        } catch (error) {
+//         console.log("error while filtering", error);
 
-        let response = error_function({
-            success: false,
-            statuscode: 400,
-            message: "failed"
-        });
+//         let response = error_function({
+//             success: false,
+//             statuscode: 400,
+//             message: "failed"
+//         });
 
-        res.status(response.statuscode).send(response);
-        return;
-    }
+//         res.status(response.statuscode).send(response);
+//         return;
+//     }
 
-}
+// }
 
