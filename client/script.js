@@ -1,3 +1,32 @@
+async function Selectionbox(){
+    let language_response = await fetch('/language',{
+        method : 'GET'
+    });
+    console.log(language_response)
+    let prased_data = await language_response.json();
+    console.log("prased_data",prased_data)
+
+    let data = prased_data.data
+    console.log("data",data);
+
+
+        let selectLanguage = document.getElementById('language');
+
+        let rows='<option selected = "language">language</option>'
+
+        for(let i =0; i<data.length; i++){
+
+            rows +=`
+          <option value="${data[i].language}">${data[i].language}</option>
+
+        `
+        }
+            
+       
+        selectLanguage.innerHTML=rows
+}
+
+
 async function addmovie(event) {
     event.preventDefault();
     console.log('reached add user');   
@@ -38,7 +67,7 @@ async function addmovie(event) {
             console.log("json_data", json_data);
 
             try {
-                let response = await fetch('/user', {
+                let response = await fetch('/movie', {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json"
@@ -64,11 +93,12 @@ async function addmovie(event) {
     }
 }
 
+
 async function loadData(event) {
     event.preventDefault();
     console.log("reached at indexpage..........");
     try {
-        const response = await fetch('/user', {
+        const response = await fetch('/movie', {
             method: 'GET',
         });
 
@@ -81,11 +111,15 @@ async function loadData(event) {
 
         let loadData = document.getElementById('loadData');
         console.log("loadData",loadData);
-
+       
         let row = '';
 
+     
+        
         for(let i =0; i<data.length; i++){
             row+=`
+
+
                 <div class="px-5"> 
                         <div class="">
                         <div>
@@ -97,7 +131,7 @@ async function loadData(event) {
                             <div class="">${data[i].title}</div>
                             <div> 
                                 <span class="">${data[i].category.category}</span>/
-                                <span class="">${data[i].language.language}</span>
+                                <!--<span class="">${data[i].language.language}</span>-->
                             </div>
                         </div>
                     </div>
@@ -106,7 +140,10 @@ async function loadData(event) {
 
             `
         }
-        loadData.innerHTML=row
+        loadData.innerHTML=row;
+
+
+
     } catch (error) {
         console.log("error",error);
     }

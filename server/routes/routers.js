@@ -8,6 +8,9 @@ router.get('/movies/:id',usercontroller.singleData);
 router.put('/movie/:id',usercontroller.updateData);
 router.delete('/movie/:id',usercontroller.deleteData);
 
+router.get('/language',usercontroller.languageSelector);
+
+
 // router.get('/filter',usercontroller.filterdata)
 
 

@@ -5,7 +5,7 @@ dotenv.config();
 const mongoConnect = require('./db/connection');
 const router = require('./routes/routers');
 
-// app.use(express.static("../client"));
+app.use(express.static("../client"));
 app.use('/uploads',express.static("./uploads"));
 
 app.use(express.json());

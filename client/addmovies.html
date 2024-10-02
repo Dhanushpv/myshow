@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/add.css">
     <title>Hello, world!</title>
   </head>
-  <body>
+  <body onload="Selectionbox()">
   <div class="position-absolute top-50 start-50 translate-middle">
 
     <form onsubmit="addmovie(event)" >
@@ -18,7 +18,11 @@
       <div><input type="text" id="rating" placeholder="Rating"></div>
       <div><input type="text" id="vote" placeholder="Vote"></div>
       <div><input type="text" id="category" placeholder="Category"></div>
-      <div><input type="text" id="language" placeholder="Language"></div>
+      <div> 
+        <select name="language" id="language">
+          <option selected="language">Language</option>
+        </select>
+      </div>
       <div><input type="text" id="about" placeholder="About"></div>
       <div><input type="file" id="image" placeholder=""></div>
       
